@@ -1,7 +1,6 @@
-const foodPartnerModel = require("../models/foodpartner.model")
-const userModel = require("../models/user.model")
-const jwt = require("jsonwebtoken");
-
+import { User } from "../models/user.model.js";
+import { foodPartnerModel } from "../models/foodpartner.model.js";
+import jwt from "jsonwebtoken"
 
 async function authFoodPartnerMiddleware(req, res, next) {
 
@@ -45,7 +44,7 @@ async function authUserMiddleware(req, res, next) {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
-        const user = await userModel.findById(decoded.id);
+        const user = await User.findById(decoded.id);
 
         req.user = user
 
@@ -61,7 +60,4 @@ async function authUserMiddleware(req, res, next) {
 
 }
 
-module.exports = {
-    authFoodPartnerMiddleware,
-    authUserMiddleware
-}
+export { authFoodPartnerMiddleware, authUserMiddleware }

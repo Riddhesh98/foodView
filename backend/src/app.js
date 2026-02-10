@@ -23,9 +23,11 @@ app.use(express.urlencoded({ extended: true })) // Enable URL-encoded data parsi
 
 
 
+import foodRoutes from "./routes/food.routes.js";
 import userRoutes from "./routes/user.routes.js";
 //routes
 app.use("/api/auth", userRoutes);
+app.use("/api/food", foodRoutes);
 
 
 
