@@ -1,7 +1,7 @@
 import express from "express"
-import { authFoodPartnerMiddleware } from "../middleware/auth.middleware.js";
+import { authFoodPartnerMiddleware ,authUserMiddleware } from "../middleware/auth.middleware.js";
 import multer from "multer";
-import { createFood } from "../controllers/food.controller.js";
+import { createFood, getFoodItems , getFoodPartnerNdVideoById } from "../controllers/food.controller.js";
 
 //file upload as buffer
 
@@ -11,11 +11,19 @@ const upload = multer({
 const router = express.Router();
 // /api/food
 
-router.post("/create",
+router.post("/",
     authFoodPartnerMiddleware,
     upload.single("video"),
      createFood)
 
+router.get("/", getFoodItems)
+
+
+
+router.get("/foodpartner/:id",
+  authUserMiddleware,
+  getFoodPartnerNdVideoById
+  )
 
 
 export default router;
