@@ -85,7 +85,7 @@ const Profile = () => {
       <section className="grid grid-cols-3 gap-[2px]">
         {videos.map((v) => (
           <div
-            key={v.id}
+            key={v._id}
             className="relative aspect-[9/16] bg-gray-900 overflow-hidden group"
           >
             <video

@@ -1,8 +1,9 @@
 import express from "express";
 import { Router } from "express";
 import { registerUser , loginUser,logoutUser,
-    registerFoodPartner , loginFoodPartner , logoutFoodPartner
+    registerFoodPartner , loginFoodPartner , logoutFoodPartner,getUserDetails
 } from "../controllers/user.controller.js";
+import { authUserMiddleware } from "../middleware/auth.middleware.js";
 
 
 const router = Router();
@@ -10,6 +11,9 @@ const router = Router();
 router.post("/users/register",registerUser )
 router.post("/users/login", loginUser)
 router.post("/users/logout", logoutUser) 
+router.get("/users/me",
+    authUserMiddleware,
+    getUserDetails)
 
 // Food Partner routes
 router.post("/food-partner/register", registerFoodPartner)

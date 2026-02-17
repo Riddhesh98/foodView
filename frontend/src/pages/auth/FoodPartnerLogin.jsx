@@ -20,7 +20,7 @@ const FoodPartnerLogin = () => {
     }
     )
     if(res.status === 200 || res.status === 201){
-      navigate('/food-partner/home')
+      navigate('/food-partner/create')
       console.log(res)
     }
     else{

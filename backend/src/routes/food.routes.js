@@ -1,7 +1,9 @@
 import express from "express"
 import { authFoodPartnerMiddleware ,authUserMiddleware } from "../middleware/auth.middleware.js";
 import multer from "multer";
-import { createFood, getFoodItems , getFoodPartnerNdVideoById } from "../controllers/food.controller.js";
+import { createFood, getFoodItems , getFoodPartnerNdVideoById
+  ,likeFoodItem , SaveFoodItem ,fetchSaveReels
+ } from "../controllers/food.controller.js";
 
 //file upload as buffer
 
@@ -24,6 +26,23 @@ router.get("/foodpartner/:id",
   authUserMiddleware,
   getFoodPartnerNdVideoById
   )
+
+
+router.put("/like/:foodId",
+  authUserMiddleware,
+  likeFoodItem
+  )
+
+
+router.put("/save/:foodId",
+  authUserMiddleware,
+  SaveFoodItem
+  )
+
+router.get("/saved-reels",
+  authUserMiddleware,
+  fetchSaveReels
+)
 
 
 export default router;
